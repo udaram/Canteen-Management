@@ -1,0 +1,55 @@
+{% extends "admin/adminlayout.html" %}
+{% block body %}
+<div class="container">
+    <h2 style="font-weight: bold;">Order Details</h2>
+    <br>
+</div>
+
+<div class="container">
+    <centre>
+    
+    <p><span style="color:blue;"> Order ID :</span> {{order[0]['orderID']}}</p>
+    <p><span style="color:blue;"> Username :</span> {{order[0]['username']}}</p>
+    <p><span style="color:blue;"> Date :</span> {{order[0]['date']}}</p>
+    <p><span style="color:blue;"> Status :</span> {{order[0]['status']}}</p>
+    <hr>
+    <table id="tablelayout">
+        <tr>
+          <th>S.No.</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Amount</th>
+        </tr>
+        
+        {%for i in range(length)%}
+        <tr>
+          <td>{{i+1}}</td>
+          <td>{{order[i]['item']}}</td>
+          <td>{{order[i]['quantity']}}</td>
+          <td>{{order[i]['price']}}</td>
+          <td>{{order[i]['price']*order[i]['quantity']}}</td>
+        </tr>
+        {%endfor%}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="font-weight: bold;">Total Amount(Rs.):</td>
+            <td style="font-weight: bold;">{{order[0]['amount']}}</td>
+        </tr>
+        
+      </table>
+  </centre>
+</div>
+
+{%if order[0]['status']=="waiting"%}
+<div class="container">
+    <br>
+    <center>
+        <a href="/confirmorder/{{order[0]['username']}}/{{order[0]['orderID']}}" <button class="btn btn-outline-success">Confirm Order</button></a>
+    </center>
+</div>
+{%endif%}
+
+{% endblock %}

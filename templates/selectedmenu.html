@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Shiva Canteen</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+	<link href="{{url_for('static',filename='css/templatemo-style.css')}}" rel="stylesheet" />
+	<script src="{{url_for('static',filename='js/Qty.js')}}"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style>
+		th,
+		td {
+			padding: 5px;
+		}
+
+		th {
+			text-align: left;
+		}
+
+		input.largerCheckbox {
+			width: 20px;
+			height: 20px;
+		}
+		p.ex1 {
+  			margin: 15px 50px 20px 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+	</script>
+</head>
+
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
+	<div class="container">
+		<div class="placeholder">
+			<div class="tm-header">
+				<div class="row tm-header-inner">
+					<div class="col-md-6 col-12">
+						<img src="{{url_for('static',filename='img/simple-house-logo.png')}}" alt="Logo"
+							class="tm-site-logo" />
+						<div class="tm-site-text-box">
+							<h1 class="tm-site-title">Shiva Canteen</h1>
+							<h6 class="tm-site-description">Place for delicious food</h6>
+						</div>
+					</div>
+					<nav class="col-md-6 col-12 tm-nav">
+						<ul class="tm-nav-ul">
+							
+							<li class="tm-nav-li"><a href="/" class="tm-nav-link active fas fa-home">Home</a></li>
+							<li class="tm-nav-li"><a href="/profile" class="tm-nav-link fas fa-user"> Profile</a></li>
+							<li class="tm-nav-li"><a href="/logout" class="tm-nav-link fas fa-sign-out-alt">Logout</a></li>
+							<li class="tm-nav-li"><a href="/contact" class="tm-nav-link fas fa-phone-alt">Contact</a></li>
+						</ul>
+						<p style="color: antiquewhite">Hii {{user}}</p>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<header class="row tm-welcome-section">
+			<h2 class="col-12 text-center tm-section-title"><b><u>Your Order</u></b></h2>
+			<p class="ex1" style="font-size:15px">We will be happy to serve you a better and healthy food.</p>
+		</header>
+	</div>
+		<div class="container" style="font-size:15px">
+			<form action="bookorder/{{items}}/{{total_amount}}" method="POST">
+				<table class="table table-stripped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">S.No.</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Qty</th>
+							<th scope="col">Price(₹)</th>
+							<th scope="col">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for i in range(length)%}
+						<tr>
+							<!-- <th scope="row"></th> -->
+							<td>{{i+1}}</td>
+							<td>{{items[i]["item"]}}</td>
+							<td>₹ {{items[i]['price']}}</td>
+                            <td>{{items[i]['quantity']}}</td>
+							<td>₹ {{items[i]['amount']}}</td>
+						</tr>
+						{%endfor%}
+                     
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+							<td><b>Total Amount (Rs.) :</b></td>
+							<td><b>₹ {{total_amount}}</b></td>
+						</tr>
+                    </tbody>
+				</table>
+				<div class="wrapper" style="text-align: center;">
+					<button type="submit" class="btn btn-primary btn-lg">Place Your Order</button>
+				</div>
+			</form>
+		</div>
+
+	
+
+		<footer class="tm-footer text-center">
+			<p>Copyright &copy; 2020 Shiva Canteen
+				
+				| Designed By: <a rel="nofollow" href="/">Developer Team Shiva</a></p>
+		</footer>
+	</div>
+	<script>
+		$(document).ready(function () {
+			// Handle click on paging links
+			$('.tm-paging-link').click(function (e) {
+				e.preventDefault();
+
+				var page = $(this).text().toLowerCase();
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+	</script>
+</body>
+
+</html>

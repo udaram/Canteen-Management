@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/dashboard.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2><i class="fas fa-tachometer-alt"></i></h2>
+        <ul>
+            <li><a href="/admin"><i class="fas fa-home"></i>Home</a></li>
+            <!-- <li><a href="#"><i class="fas fa-user"></i>Profile</a></li> -->
+            <li><a href="/menu"><i class="fas fa-book-open"></i>Menu</a></li>
+            <li><a href="/orders"><i class="fas fa-project-diagram"></i>Orders</a></li>
+            <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
+            <li><a href="/admin_logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
+        <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="main_content">
+        <div class="header">Welcome!! Admin Dashboard</div>  
+        <div class="info">     
+    </div>
+
+    {%block body%} {%endblock%}
+
+</div>
+</body>
+</html>

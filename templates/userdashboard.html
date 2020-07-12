@@ -1,0 +1,38 @@
+{% extends "userlayout.html" %}
+{% block body %}
+
+<div class="container">
+  <centre>
+    Welcome!! {{info['name']}}
+    <hr>
+    <h2 style="font-weight: bold;">About</h2>
+    <br>
+    <img src="{{url_for('static',filename='img/avatar.jpeg')}}" style="width:150px;font-style: oblique;" alt="Avatar">
+    <br><br>
+    <p><span style="color:blue;"><i class="fas fa-user"></i>  Username :</span> {{info['username']}} </p>
+    <p><span style="color:blue;"><i class="fas fa-pen"></i>  Name :</span> {{info['name']}} </p>
+    <p> <span style="color:blue;"><i class="fas fa-angle-double-right"></i>  Status :</span> {{info['status']}}</p>
+    <p> <span style="color:blue;"><i class="fas fa-phone-volume"></i>  Contact No. :</span> +91 {{info['mobile']}} </p>
+    <p> <span style="color:blue;"><i class="fas fa-envelope"></i>  Email :</span> {{info['email']}} </p>
+
+    <a href="/sendresetlink/{{info['username']}}">Click to reset Password</a>
+
+    {%with messages= get_flashed_messages(with_categories=true)%}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="alert alert-{{category}} alert-dismissible fade show mb-0" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {%endfor%}
+    {% endif %}
+    {%endwith%}
+
+  </centre>
+</div>
+
+
+{% endblock %}

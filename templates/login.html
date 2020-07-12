@@ -1,0 +1,93 @@
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Custom Theme files -->
+	<link href="{{url_for('static',filename='css/signup.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<!-- //Custom Theme files -->
+	<!-- web font -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+	<!-- //web font -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="card bg-light">
+			{%with messages= get_flashed_messages(with_categories=true)%}
+				{% if messages %}
+				{% for category,message in messages %}
+				<div class="alert alert-{{category}} alert-dismissible fade show mb-0" role="alert">
+					{{message}}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+			{%endfor%}
+			{% endif %}
+			{%endwith%}
+			<article class="card-body mx-auto" style="max-width: 400px;">
+				<h4 class="card-title mt-3 text-center">Login</h4>
+				<!-- <p>
+					<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+					<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via
+						facebook</a>
+				</p> -->
+				<p class="divider-text">
+					<span class="bg-light">Welcome</span>
+				</p>
+
+				<form action="/login" method="POST">
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+						</div>
+						<input name="email" class="form-control" placeholder="Email address" type="email" required>
+					</div> <!-- form-group// -->
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+						</div>
+						<input name="password" class="form-control" placeholder="Enter password" type="password" required>
+					</div> <!-- form-group// -->
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block"> Login </button>
+					</div> <!-- form-group// -->
+					<p class="text-center">Don't have an account? <a href="/signup">Sign Up</a> </p>
+					<p class="text-center"><a href="/forgot-password">Forgot Password </a> </p>
+					
+				</form>
+				
+			</article>
+			
+		</div> <!-- card.// -->
+	</div>
+	<!--container end.//-->
+	<br><br>
+	<article class="bg-secondary mb-3">
+		<div class="card-body text-center">
+			<h3 class="text-white mt-3">Shiva Canteen</h3>
+			<p class="h5 text-white">A place for delicious food<br>... </p> <br>	
+		</div>
+		<br><br>
+	</article>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{% extends "admin/adminlayout.html" %}
+{% block body %}
+<div class="container">
+    <h2 style="text-align: center">Orders</h2>
+    <br>
+</div>
+
+<div class="container">
+    <centre>
+      <h2 style="font-weight: bold;">Orders</h2>
+      <table id="tablelayout">
+          {%if no_orders==0%}
+          <p>No Orders yet </p>
+          {%else%}
+          <tr>
+            <th>S.No.</th>
+            <th>OrderID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Details</th>
+          </tr>
+          
+          {%for i in range(no_orders)%}
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{orders[i]['orderID']}}</td>
+            <td>{{orders[i]['date']}}</td>
+            <td>{{orders[i]['amount']}}</td>
+            <td>{{orders[i]['status']}}</td>
+            <td><a href="/vieworder/{{orders[i]['orderID']}}"><button class="btn btn-primary">View</button></a></td>
+          </tr>
+          {%endfor%}
+          {%endif%}
+          
+        </table>
+    </centre>
+  </div>
+
+
+{% endblock %}

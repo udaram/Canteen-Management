@@ -1,0 +1,37 @@
+{% extends "admin/adminlayout.html" %}
+{% block body %}
+<div class="container">
+    <h2 style="text-align: center">Today's Menu</h2>
+    <br>
+</div>
+
+<div class="container">
+    <table id="tablelayout">
+        <tr>
+            <th>S.No</th>
+            <th>Item</th>
+            <th>Price (₹)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {%for i,item in menu%}
+        <tr>
+            <td>{{i+1}}.</td>
+            <td>{{item["item"]}}</td>
+            <td>₹ {{item["price"]}}</td>
+            <td><a href="/edit/{{item['item']}}" <button class="btn btn-primary">Edit</button></a></td>
+            <td><a href="/delete/{{item['item']}}" <button class="btn btn-primary">Delete</button></a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+
+<div class="container">
+    <br>
+    <center>
+        <a href="/addmenu" <button class="btn btn-outline-success">Add New Menu</button></a>
+    </center>
+</div>
+
+
+{% endblock %}

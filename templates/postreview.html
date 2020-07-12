@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reviews</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/postreview.css')}}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="{{url_for('static',filename='css/templatemo-style.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body onload="typeWriter()">
+    <!-- navigation bar -->
+    <div class="container">
+		<div class="placeholder">
+			<div class="tm-header">
+				<div class="row tm-header-inner">
+					<div class="col-md-6 col-12">
+						<img src="{{url_for('static',filename='img/simple-house-logo.png')}}" alt="Logo"
+							class="tm-site-logo" />
+						<div class="tm-site-text-box">
+							<h1 class="tm-site-title">Shiva Canteen</h1>
+							<h6 class="tm-site-description">Place for delicious food</h6>
+						</div>
+					</div>
+					<nav class="col-md-6 col-12 tm-nav">
+						<ul class="tm-nav-ul">
+							
+							<li class="tm-nav-li"><a href="/" class="tm-nav-link active fas fa-home">Home</a></li>
+							<li class="tm-nav-li"><a href="/profile" class="tm-nav-link fas fa-user"> Profile</a></li>
+							<li class="tm-nav-li"><a href="/logout" class="tm-nav-link fas fa-sign-out-alt">Logout</a></li>
+							<li class="tm-nav-li"><a href="/contact" class="tm-nav-link fas fa-phone-alt">Contact</a></li>
+						</ul>
+						<p style="color: antiquewhite">Hii {{user}}</p>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+
+    <!-- type writer effect -->
+    <script>
+        var i = 0;
+        var txt = 'Write Your Review Here...';
+        var speed = 50;
+
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("demo").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+    </script>
+
+    <!-- Message Flashing -->
+    <div class="container">
+        {%with messages= get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+        {% for category,message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show mb-0" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {%endfor%}
+    {% endif %}
+    {%endwith%}
+
+    <!-- Review form -->
+    <div class="container">
+        <h3 id="demo"><b></b></h3>
+        <form action="/postreview/{{item}}" method="POST">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Review</label>
+                <textarea class="form-control" name="review" id="exampleFormControlTextarea1" rows="6"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+        </form>
+    </div>
+
+
+    <!-- Showing Previous Reviews -->
+    <div class="container mt-3">
+        <h2><b>Previous Reviews</b></h2>
+    </div>
+    <div class="container">
+        {% for i,review in reviews%}
+        {%if i%2==0%}
+        <div class="contain">
+            {%else%}
+            <div class="contain darker">
+                {%endif%}
+                <img src="{{url_for('static',filename='img/avatar.jpeg')}}" alt="Avatar">
+                <h5><b>{{review["username"]}}</b></h5>
+                <p>{{review["review"]}}</p>
+                {%if review["sentiment"]=="POSITIVE"%}
+                <span class="date-right"><b>Date:</b> {{review["date"]}} <b>Sentiment:</b>
+                    <font color="green">{{review["sentiment"]}}</font>
+                </span>
+                {%endif%}
+                {%if review["sentiment"]=="NEGATIVE"%}
+                <span class="date-right"><b>Date:</b> {{review["date"]}} <b>Sentiment:</b>
+                    <font color="red">{{review["sentiment"]}}</font>
+                </span>
+                {%endif%}
+                {%if review["sentiment"]=="NEUTRAL"%}
+                <span class="date-right"><b>Date:</b> {{review["date"]}} <b>Sentiment:</b>
+                    <font color="blue">{{review["sentiment"]}}</font>
+                </span>
+                {%endif%}
+            </div>
+            {%endfor%}
+        </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+            <footer class="tm-footer text-center">
+                <p>Copyright &copy; 2020 Shiva Canteen    
+                    | Designed By: <a rel="nofollow" href="/">Developer Team Shiva</a></p>
+            </footer>
+        
+            
+</body>
+
+</html>

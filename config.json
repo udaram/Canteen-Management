@@ -2,9 +2,9 @@
     "params":
     {
         "SENDER_EMAIL":"shivacanteen201@gmail.com",
-        "SENDER_PASS":"udardc@123",
+        "SENDER_PASS":"",
         "admin_username":"udaram",
-        "admin_password":"udardc@123",
+        "admin_password":"u",
         "ip":"192.168.43.204"
 
     }

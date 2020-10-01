@@ -2,10 +2,10 @@
 Designed a fully functional web app for canteen Management with the following key features:-<br>
 * 1.Login, Regenerate Password for the User.
 * 2.After Logging in, User can manage their orders, can order food, and watch their previous orders and profile.
-* 3.Users can review the food items and can check the ingredients of Food by just clicking the Photo of Food.
+* 3.User can review the food items and can check the ingredients of Food by just clicking the Photo of Food.
 * 4.Separate Login window for Admin where Admin can verify the order and can send the order status mail to User.
 * 5.admin can manage the food items and their prices.
-* 6. User can manage their profile at Canteen easily just by verifying the email address.
+* 6.User can manage their profile at Canteen easily just by verifying the email address.
 
 ## Miscellaneous Features
 * Computer Vision for Food ingredient tag generation

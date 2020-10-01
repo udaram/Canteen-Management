@@ -13,14 +13,14 @@ Designed a fully functional web app for canteen Management with the following ke
 * We used MySQL database for all the data retrieval/storage using SQL query execution.
 
 ## Technology/Frameworks used
-* Python,
-* Flask, 
-* HTML, 
-* CSS, 
-* Bootstrap,
-* MySQL,
-* Rest API,
-* NLP, 
+* Python
+* Flask 
+* HTML 
+* CSS
+* Bootstrap
+* MySQL
+* Rest API
+* NLP 
 * Computer Vision
 
 ##  Preview
